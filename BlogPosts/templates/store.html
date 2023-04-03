@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    STORE Page
+{% endblock %}
+
+{% block body %} 
+    <div style="margin-left: 70px;width: 1200px;" class="bar-container1">
+        <div class="button-flex">
+            <div style="margin-right: -100px;">
+                <h1 style="color: navy;"> Store Dashboard</h1>
+                <h3 style="color: blue;text-align: center;">Store Collections</h3>
+            </div>
+            <div>
+                <a style="margin-left:200px;margin-top: 30px;" class="btn btn-success" href="/create_store">+ New Store </a>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex;justify-content: space-evenly;flex-wrap: wrap;" class="phone-flex">
+        {% for store in stores %}
+            <div class="phone-container">
+                <div class="store">
+                    <h2 style="padding-top: 10px;">{{store.name}}</h2>
+                    <h2>Store_id : <span style="color: red;">{{store.id}}</span></h2>
+                    <h2 style="border-bottom: none;">Items : </h2>
+                </div>
+                <table>
+                    <thead class="thead">
+                        <tr>
+                            <th>Id</th>
+                            <th style="padding-left: 50px;" >Name</th>
+                            <th style="padding-left: 20px;" >Barcode</th>
+                            <th style="padding-left: 30px;">Price</th>
+                        </tr>
+                    </thead>
+                    {% for item in store.items%}
+                        <tbody class="tbody">
+                            <tr class="tr_group">
+                                <td>{{item.id}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.barcode}}</td>
+                                <td style="color: red;">${{item.price}}0</td>
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                </table> 
+                <div class="button-flex">
+                    <a href="/edit_store/{{store.id}}" style="color:white;border: 3px solid green;width: 150px;background-color: blue;" class="button">Edit</a>
+                    <a href="/delete_store/{{store.id}}" style="color: white;border: 3px solid green;width: 150px;background-color: red;" class="button">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+     
+{% endblock %}

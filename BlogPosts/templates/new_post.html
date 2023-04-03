@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    NEW POST PAGE
+{% endblock %}
+
+{% block body %} 
+  <div style="margin-left: 50px;" class="bar-container1">
+    <h1 style="color: navy;"> New Post Page</h1>
+    <h3 style="color: blue;text-align: center;">Create and Publish Your Post</h3>
+  </div>
+
+  <!-- New Post-->
+  <div style="display: flex;justify-content: center;">
+    <div class="col-xl-8">
+      <br>
+      <br>
+      <div class="card mb-4" style="margin-left: 20px;">
+          <div class="card-header" style="color: navy;font-weight: bold;font-size: 30px;text-align: center;border-bottom: 5px solid lightgray;">Create New Post</div>
+          <br>
+          <h4 style="color: red;text-align: center;font-weight: bold;">{{errors}}</h4>
+          <div class="card-body">
+            <form action="/create_post" method = 'POST'>
+              <div class="form-group">
+                <label style="color: red;font-weight: bold;" for="user_id">USER ID:</label>
+                <input type="number" class="form-control" id="user_id" name="user_id"  aria-describedby="Enter User ID" placeholder="Enter User ID">
+      
+              </div>
+              <div class="form-group">
+                  <label style="color: red;font-weight: bold;" for="title">TITLE:</Title></label>
+                  <input type="text" class="form-control" id="title" name="title"  aria-describedby="Enter Title" placeholder="Enter Title">
+        
+                </div>
+                <div class="form-group">
+                  <label style="color: red;font-weight: bold;" for="author">AUTHOR:</label>
+                  <input type="text" class="form-control" id="author" name="author"  aria-describedby="Enter Author" placeholder="Enter Author">
+                </div>
+                <div class="form-group">
+                  <label style="color: red;font-weight: bold;" for="content">POST</label>
+                  <textarea class="form-control" id="content" name="content"  aria-describedby="Enter Content"placeholder="Content" rows="7"></textarea>
+                </div>
+                <center>
+                  <button style="background: green;" class="btn btn-primary" type="submit">POST</button>
+                </center>
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

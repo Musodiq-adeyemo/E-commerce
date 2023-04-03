@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Home Page
+{% endblock %}
+
+{% block body %} 
+    <div style="margin-left: 50px;width: 1250px;" class="bar-container1">
+        <br>
+        <h1 style="display: inline;color: navy;padding-left: 100px;">SIRMUSO BLOGSITE POSTS</h1>
+        <br>
+            <a style="display: inline;float:right;margin-right: 180px;margin-top: -50px;" class="btn btn-success" href="/create_post">+ New Post </a>
+        <br>
+    </div>
+    <div class="overall-container" style="display: flex;">
+        <div>
+            {% for blog in blogs %}
+                <div style="margin-left: 40px;" class="general-container">
+                    <div class="container-body">
+                        <div style="margin-left: 100px;width: 700px;margin-right: 40px;" class="post-container">
+                            <div  class="title-container">
+                                <h2 style="color: green;font-weight:bold;font-size: 40px;text-align: center;"> {{blog.title}}</h2>
+                            </div>
+                            <br>
+                            <br>
+                            {% for  image in pimages%}
+                                {% if image.post_id == blog.id%}
+                                    <div class="contentimage">
+                                        <img style="width: 700px;height: 450px;" src="static/postimages/{{image.name}}" alt={{image.name}}>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <br>
+                            <br>
+                            <p style="white-space: pre-wrap;font-size: 16px;text-align: left;">{{blog.content}}</p>
+                            <br>
+                            <div class="button-flex">
+                                <a href="/upload_postimage/{{blog.id}}" style="color: white;border: 3px solid green;width: 150px;background-color: gray;" class="button">Upload</a>
+                                <a href="/edit_post/{{blog.id}}" style="color:white;border: 3px solid green;width: 150px;background-color: blue;" class="button">Edit</a>
+                                <a href="/delete_post/{{blog.id}}" style="color: white;border: 3px solid green;width: 150px;background-color: red;" class="button">Delete</a>
+                            </div>
+                            <br>
+                            <br>
+                            <div  class="title-container">
+                                {% for  image in images%}
+                                    {% if image.user_id == blog.user_id %}
+                                        <img class="post-image" src="static/userimages/{{image.name}}" alt={{image.name}}>
+                                    {% endif %}
+                                {% endfor %}
+                                <a href=""><h1 style="font-weight:bold;color: navy;font-size: 20px;text-align: left;">@{{blog.author}} </h1></a>
+                                <h1 class="date" style="font-weight:bold;color: navy;font-size: 16px;text-align:center;padding-left: 50px;padding-right: 20px;">{{blog.posted_at.strftime('%d-%m-%y')}} </h1>
+                                <h1 style="font-weight:bold;color: navy;font-size: 16px;"> Id : {{blog.id}} </h1>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="search-container" style="width: 500px;height: 700px;">
+            <h2 style="font-weight:bold;color: blue;font-size: 30px;"> Users Suggestion</h2>
+            <br>
+            {% for user in users %}
+            <div class="bar-container">
+                <div style="display: flex;justify-content: space-evenly;">
+                    <div>
+                        {% for  image in images%}
+                            {% if image.user_id == user.id %}
+                                <img class="post-image" style="width: 70px;height: 70px;margin-left: 20px;margin-top: 10px;" src="static/userimages/{{image.name}}" alt={{image.name}}>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div style="margin-left: -30px;">
+                        <a href=""><h1 style="font-weight:bold;color: navy;font-size: 20px;text-align: left;">@{{user.username}} </h1></a>
+                        <h6 style="font-weight:bold;color: green;">No of Articles : <span style="color: red;">{{no_of_blog}}</span></h6>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>                          
+    </div>
+{% endblock %}

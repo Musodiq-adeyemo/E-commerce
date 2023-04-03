@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+
+{% block title %} 
+  Edit Store PAGE
+{% endblock %}
+
+{% block body %}
+<div style="margin-left: 150px;" class="bar-container1">
+    <h1 style="color: navy;"> Store Update</h1>
+    <h3 style="color: blue;text-align: center;">Update Item Store</h3>
+</div>
+<div style="display: flex;justify-content: center;">
+    <div class="col-xl-8">
+      <br>
+      <br>
+      <div class="card mb-4" style="margin-left: 20px;">
+        <br>
+        <h4 style="color: red;text-align: center;font-weight: bold;">{{errors}}</h4>
+          <div class="card-header" style="color: navy;font-weight: bold;font-size: 30px;text-align: center;border-bottom: 5px solid lightgray;">Update Store</div>
+          <div class="card-body">
+            <form action="/edit_store/{{store.id}}" method ='POST'>
+                <div class="form-group">
+                    <label style="color: red;font-weight: bold;" for="name">NAME:</label>
+                    <textarea class="form-control" id="name" name="name"  aria-describedby="Enter Store Name" rows="2">{{store.name}}</textarea>
+                </div>
+                <center>
+                    <button style="background: green;" class="btn btn-primary" type="submit">Update Store</button>
+                </center>
+                
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

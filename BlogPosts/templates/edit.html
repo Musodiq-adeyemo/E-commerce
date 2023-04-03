@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    EDIT POST PAGE
+{% endblock %}
+
+{% block body %} 
+<div style="margin-left: 50px;" class="bar-container1">
+  <h1 style="color: navy;"> Edit Page</h1>
+  <h3 style="color: blue;text-align: center;">Edit Your Post</h3>
+</div>
+
+  <!-- Edit Post-->
+  <div style="display: flex;justify-content: center;">
+    <div class="col-xl-8">
+      <!-- Post  Updating card-->
+      <br>
+      <br>
+      <div class="card mb-4" style="margin-left: 20px;">
+          <div class="card-header" style="color: navy;font-weight: bold;font-size: 30px;text-align: center;border-bottom: 5px solid lightgrey;">Edit Post</div>
+          <br>
+          <h4 style="color: red;text-align: center;font-weight: bold;">{{errors}}</h4>
+          <div class="card-body">
+            <form action="/edit_post/{{blog.id}}" method = 'POST'>
+              <div class="form-group">
+                  <label style="color: red;font-weight: bold;" for="title">TITLE:</label>
+                  <input type="text" class="form-control" id="title" name="title"  aria-describedby="Enter Title" value="{{blog.title}}">
+                </div>
+                
+                <div class="form-group">
+                  <label style="color: red;font-weight: bold;" for="content">POST</label>
+                  <textarea class="form-control" id="content" name="content"  aria-describedby="Enter Content" rows="7">{{blog.content}}</textarea>
+                </div>
+                <center>
+                  <button style="background: green;" class="btn btn-primary" type="submit">SAVE</button>
+                </center>
+                
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+    
+{% endblock %}

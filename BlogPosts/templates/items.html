@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    ITEMS Page
+{% endblock %}
+
+{% block body %} 
+    <div style="margin-left: 50px;width: 1200px;" class="bar-container1">
+        <div class="button-flex">
+            <div>
+                <h1 style="color: navy;"> Items Dashboard</h1>
+                <h3 style="color: blue;text-align: center;">Items Information</h3>
+            </div>
+            <div>
+                <a style="margin-left:200px;margin-top: 30px;" class="btn btn-success" href="/create_item">+ New Item </a>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    <div style="display: flex;justify-content: space-evenly;flex-wrap: wrap;" class="phone-flex">
+        {% for item in items %}
+            <div style="width: 400px;height:auto; " class="phone-container">
+                <div  class="flex">
+                    {% for  image in images%}
+                        {% if image.item_id == item.id%}
+                            <div style="height: 280px;width: 150px;" class="phone-image">
+                                <img src="static/itemimages/{{image.name}}" alt={{image.name}}>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div style="padding-bottom: -20px;" class="store">
+                        <h3 >Item_id : <span style="color:red ;">{{item.id}}</span></h3>
+                        <hr>
+                        <h3>{{item.name}}</h3>
+                        <hr>
+                        <h3 style="padding-bottom: 20px;border-bottom: none;">{{item.barcode}}</h3>
+                    </div>
+                </div>
+                <div class="flex">
+                    <h3>{{item.prod_date.strftime('%d-%m-%y')}}</h3>
+                    <h3 style="color:red ;">${{item.price}}</h3>
+                </div>
+                <div class="htl">
+                    <a href='/content/{{item.id}}'class="button">View item Content</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div style="margin-left: 100px;width:90%;" class="table">
+        <h1 style="color: navy;"> Items List</h1>
+        <table>
+            <thead class="head">
+                <tr style="width: 1200px;">
+                    <th>Id</th>
+                    <th style="padding-left: 80px;">Store_id</th>
+                    <th style="padding-left: -280px;">Barcode</th>
+                    <th>Price</th>
+                    <th style="padding-left: 80px;">Name</th>
+                    <th style="padding-left: -80px;">Prod_date</th>
+                </tr>
+            </thead>
+            <tbody class="body">
+                <tr class="group">
+                    {% for item in items %}
+                        <td>{{item.id}}</td>
+                        <td style="margin-left: -60px ;">{{item.store_id}}</td>
+                        <td style="margin-left: -60px ;">{{item.barcode}}</td>
+                        <td style="margin-left: -80px ;">${{item.price}}</td>
+                        <td style="margin-left: -80px ;" >{{item.name}}</td>
+                        <td style="margin-left: -40px">{{item.prod_date.strftime('%d-%m-%y')}}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>    
+    </div>  
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %} 
+
+{% block title %} 
+  Create Item PAGE
+{% endblock %}
+
+{% block body %}
+<div style="margin-left: 150px;" class="bar-container1">
+    <h1 style="color: navy;"> Item Creation</h1>
+    <h3 style="color: blue;text-align: center;">Create Your Item</h3>
+</div>
+<div style="display: flex;justify-content: center;">
+    <div class="col-xl-8">
+      <br>
+      <br>
+      <div class="card mb-4" style="margin-left: 20px;">
+        <br>
+        <h4 style="color: red;text-align: center;font-weight: bold;">{{errors}}</h4>
+          <div class="card-header" style="color: navy;font-weight: bold;font-size: 30px;text-align: center;border-bottom: 5px solid lightgray;">Create Item</div>
+          <div class="card-body">
+            <form action="/create_item" method ='POST'>
+                
+                <div class="form-group">
+                    <div>
+                        <label style="color: red;font-weight: bold;" for="name">NAME:</label>
+                        <input type="text" class="form-control" id="name" name="name"  aria-describedby="Enter Item Name" placeholder="Enter Item Name">
+                    </div>
+                    <div>
+                      <label style="color: red;font-weight: bold;" for="price">PRICE:</label>
+                      <input type="number" class="form-control" id="price" name="price"  aria-describedby="Enter Price" placeholder="Enter Price">
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <div>
+                    <label style="color: red;font-weight: bold;" for="barcode">BARCODE:</label>
+                    <input type="text" class="form-control" id="barcode" name="barcode"  aria-describedby="Enter Barcode" placeholder="Enter Barcode">
+                  </div>
+                  <div>
+                    <label style="color: red;font-weight: bold;" for="prod_date">PROD_DATE:</label>
+                    <input type="text" class="form-control" id="prod_date" name="prod_date"  aria-describedby="Enter Prod_date" placeholder="Enter Prod_date">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div>
+                    <label style="color: red;font-weight: bold;" for="store_id">STORE ID:</label>
+                    <input type="number" class="form-control" id="store_id" name="store_id"  aria-describedby="Enter Store Id" placeholder="Enter Store Id">
+                  </div>
+                  <div>
+                    <label style="color: red;font-weight: bold;" for="user_item">USER ID:</label>
+                    <input type="number" class="form-control" id="user_item" name="user_item"  aria-describedby="Enter User Id" placeholder="Enter User Id">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label style="color: red;font-weight: bold;" for="description">DESCRIPTION:</label>
+                    <textarea class="form-control" id="description" name="description"  aria-describedby="Enter Description" placeholder="Enter Description" rows="7"></textarea>
+                </div>
+                <center>
+                    <button style="background: green;" class="btn btn-primary" type="submit">Create Item</button>
+                </center>
+                
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
