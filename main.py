@@ -47,7 +47,7 @@ app.include_router(item.router)
 app.include_router(password_reset.router)
 
 templates = Jinja2Templates(directory="BlogPosts/templates")
-app.mount("/static",StaticFiles(directory="Blogposts/static"),name="static")
+app.mount("/static",StaticFiles(directory="BlogPosts/static"),name="static")
 
 def get_user(id:int,session=get_db):
     db = next(session())
